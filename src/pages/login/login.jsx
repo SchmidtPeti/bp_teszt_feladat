@@ -4,6 +4,7 @@ import Input from "../../components/input/input";
 import Checkbox from "../../components/checkbox/checkbox";
 import Button from "../../components/button/button";
 import MySvgComponent from '../../components/svg-component/svgcomponent';
+import PageTitle from '../../components/page-title/pagetitle';
 import "./login.css";
 
 const Login = ({ onLogin }) => {
@@ -19,16 +20,19 @@ const Login = ({ onLogin }) => {
     return (
         <div className="login-page">
             <MySvgComponent />
-            <Modal>
-                <Input fieldLabel="Email cím:" isPassword={false} onChange={setEmail} value={email} />
-                <Input fieldLabel="Jelszó:" isPassword={true} onChange={setPassword} value={password} />
-                <Checkbox 
-                    label="Emlékezem rám!" 
-                    isChecked={isRemembered} 
-                    onCheckboxChange={rememberChangeHandle}
-                />
-                <Button text="Bejelentkezés" onClick={handleLoginClick} />
-            </Modal>
+            <div className="container">
+                <PageTitle title={'Bejelentkezés'} />
+                <Modal>
+                    <Input fieldLabel="Email cím:" isPassword={false} onChange={setEmail} value={email} />
+                    <Input fieldLabel="Jelszó:" isPassword={true} onChange={setPassword} value={password} />
+                    <Checkbox 
+                        label="Emlékezem rám!" 
+                        isChecked={isRemembered} 
+                        onCheckboxChange={rememberChangeHandle}
+                    />
+                    <Button text="Bejelentkezés" onClick={handleLoginClick} />
+                </Modal>
+            </div>
         </div>
     );
 };
