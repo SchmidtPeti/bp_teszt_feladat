@@ -1,23 +1,30 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import Login from './pages/login/login';
+import Auth from './pages/auth/auth';
 import './App.css';
 
-function App() {
+const App = () => {
+  const [user, setUser] = useState(null);
+
+  const handleLogin = ({ email, password }) => {
+    if (email.length>0 && password.length>0) {
+      setUser({ name: 'Budapest' });
+    } else {
+      alert('Rossz email vagy jelszó');
+    }
+  };
+
+  const handleLogout = () => {
+    setUser(null);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {user ? (
+        <Auth userName={user.name} onLogout={handleLogout} />
+      ) : (
+        <Login onLogin={handleLogin} />
+      )}
     </div>
   );
 }
